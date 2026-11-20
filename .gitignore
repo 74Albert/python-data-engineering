@@ -1,0 +1,10 @@
+# Общие папки
+logs/
+config/
+plugins/
+docker-compose.yaml
+
+# Файлы в папке dags
+.env
+__pycache__/
+venv/
