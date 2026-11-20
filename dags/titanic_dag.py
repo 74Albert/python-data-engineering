@@ -11,6 +11,7 @@ from config import settings
 import pandas as pd
 from sqlalchemy import create_engine, text
 
+# region Загрузка данных их CSV файла
 def load_titanic_to_postgres():
     print("Начинаем загрузку данных...")
 
@@ -39,7 +40,8 @@ def load_titanic_to_postgres():
     finally:
         engine.dispose()
 
-# Создаем DAG
+# endregion
+
 with DAG(
     dag_id='titanic_etl_pipeline',
     start_date=datetime(2023, 1, 1),
@@ -48,7 +50,7 @@ with DAG(
     tags=['titanic', 'etl'],
 ) as dag:
 
-    # Определяем задачу
+
     load_data_task = PythonOperator(
         task_id='load_titanic_data',
         python_callable=load_titanic_to_postgres,
